@@ -1,1 +1,0 @@
-# kaz-SH.github.io
