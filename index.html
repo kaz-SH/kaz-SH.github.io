@@ -84,7 +84,6 @@
             line-height: 1;
             color: white;
             position: relative;
-            /* Découpe laser à 50% */
             clip-path: polygon(0% 0%, 100% 0%, 100% 46%, 0% 46%, 0% 54%, 100% 54%, 100% 100%, 0% 100%);
             z-index: 5;
             -webkit-font-smoothing: antialiased;
@@ -195,6 +194,22 @@
             20% { opacity: 1; }
             100% { opacity: 0; }
         }
+
+        /* Markdown / Content Styling */
+        .markdown-content h1 { font-size: 2.5rem; font-weight: 900; margin-bottom: 2rem; text-transform: uppercase; letter-spacing: -0.05em; line-height: 1; }
+        .markdown-content h2 { font-size: 1.5rem; font-weight: 700; margin-top: 3rem; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 0.1em; color: #fff; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem; }
+        .markdown-content h3 { font-size: 1.1rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem; color: var(--photon); font-family: 'JetBrains Mono', monospace; }
+        .markdown-content p { color: #a1a1aa; line-height: 1.8; margin-bottom: 1.5rem; font-size: 0.95rem; }
+        .markdown-content ul, .markdown-content ol { margin-bottom: 1.5rem; padding-left: 1.5rem; color: #a1a1aa; }
+        .markdown-content li { margin-bottom: 0.5rem; list-style-type: disc; }
+        .markdown-content strong { color: #fff; font-weight: 600; }
+        .markdown-content code { background: rgba(255,255,255,0.1); padding: 0.2em 0.4em; border-radius: 0.3em; font-family: 'JetBrains Mono', monospace; font-size: 0.85em; color: #fff; }
+        .markdown-content pre { background: #000; border: 1px solid var(--glass-border); padding: 1.5rem; border-radius: 1rem; overflow-x: auto; margin-bottom: 1.5rem; }
+        .markdown-content pre code { background: transparent; padding: 0; color: #cbd5e1; }
+        .markdown-content blockquote { border-left: 3px solid var(--photon); padding-left: 1rem; color: #94a3b8; font-style: italic; margin-bottom: 1.5rem; }
+        .markdown-content a { color: var(--photon); text-decoration: underline; text-underline-offset: 4px; }
+        .markdown-content hr { border-color: rgba(255,255,255,0.1); margin: 4rem 0; }
+        .markdown-content img { max-width: 100%; border-radius: 1rem; border: 1px solid var(--glass-border); margin: 2rem 0; }
     </style>
 </head>
 <body>
@@ -207,7 +222,7 @@
 
     <!-- CONTENU PRINCIPAL -->
     <div id="main-site">
-        <nav class="w-full px-12 py-8 flex justify-between items-center z-50">
+        <nav class="w-full px-12 py-8 flex justify-between items-center z-50 sticky top-0 bg-black/80 backdrop-blur-md border-b border-white/5">
             <div class="flex items-center gap-4">
                 <div class="logo-wrapper scale-50 -ml-12">
                     <div class="lightning-container"><div class="photon-pulse"></div></div>
@@ -222,238 +237,196 @@
             <div class="text-[10px] font-mono text-zinc-600 tracking-widest">BUILD_2026_PTSI</div>
         </nav>
 
-        <main class="flex-1 container mx-auto px-6 py-12">
+        <main class="flex-1 container mx-auto px-6 py-12 max-w-5xl">
             
-            <!-- VUE ACCUEIL (Single Scrolling Page) -->
-            <div id="home-view" class="content-section active flex flex-col items-center gap-32">
-
-                <!-- 1. HERO -->
-                <div class="text-center max-w-4xl pt-12">
-                    <div class="logo-wrapper mb-12">
-                        <div class="lightning-container"><div class="photon-pulse" style="animation-duration: 1.5s;"></div></div>
-                        <div class="k-split" style="font-size: 10rem;">K</div>
-                    </div>
-                    <h1 class="text-5xl md:text-7xl font-black tracking-tighter mb-8 uppercase leading-tight">
-                        VOTRE SERVEUR.<br>VOTRE <span class="text-blue-500 italic">PUISSANCE</span>.<br>NOTRE NUAGE.
-                    </h1>
-                    <p class="text-zinc-400 text-lg font-light mb-12 max-w-2xl mx-auto leading-relaxed">
-                        Jouez en multijoueur sur votre propre machine, sans contraintes, avec la sécurité d'un serveur dédié.
-                    </p>
-                    <div class="flex gap-4 justify-center">
-                        <button onclick="document.getElementById('download-area').scrollIntoView({behavior: 'smooth'})" class="btn-prime w-auto">TÉLÉCHARGER</button>
-                        <button onclick="document.getElementById('features-area').scrollIntoView({behavior: 'smooth'})" class="px-8 py-4 border border-zinc-800 rounded-xl text-xs font-mono uppercase tracking-widest hover:border-white transition-all">POURQUOI KORE ?</button>
-                    </div>
+            <!-- VUE ACCUEIL (Verbatim WEBSITE_CONTENT.md) -->
+            <div id="home-view" class="content-section active markdown-content">
+                <h1 id="kore-engine-contenu-promotionnel">KORE Engine - Contenu Promotionnel</h1>
+                <p>Voici une description textuelle des arguments clés du logiciel, optimisée pour une intégration sur un site web vitrine.</p>
+                <hr>
+                <h2 id="-slogan-principal-hero-section-">🏆 Slogan Principal (Hero Section)</h2>
+                <p><strong>"Votre Serveur. Votre Puissance. Notre Nuage."</strong>
+                Jouez en multijoueur sur votre propre machine, sans contraintes, avec la sécurité d'un serveur dédié.</p>
+                <hr>
+                <h2 id="-pourquoi-choisir-kore-launcher-arguments-cl-s-">⚡ Pourquoi choisir KORE Launcher ? (Arguments Clés)</h2>
+                <h3 id="1-l-architecture-host-anywhere-">1. L'Architecture "Host Anywhere"</h3>
+                <p>Oubliez les locations de serveurs onéreuses qui manquent de RAM. Avec KORE, <strong>votre PC devient le serveur</strong>. Utilisez toute la puissance de votre processeur Ryzen/Intel et vos 32Go de RAM pour héberger des modpacks lourds sans lag.</p>
+                <ul>
+                <li><strong>Le Concept :</strong> Le serveur tourne chez vous, la sauvegarde est synchronisée dans le Cloud.</li>
+                <li><strong>Avantage :</strong> Performance maximale, gratuit (vous pouvez obtenir facilment un vps dédié au stockage chez les hébergeurs)</li>
+                </ul>
+                <h3 id="2-z-ro-configuration-r-seau-powered-by-playit-gg-">2. Zéro Configuration Réseau (Powered by Playit.gg)</h3>
+                <p>Plus besoin d'ouvrir des ports dans votre box internet ou de dévoiler votre adresse IP personnelle.</p>
+                <ul>
+                <li><strong>Tunneling Sécurisé :</strong> KORE intègre nativement la technologie de tunneling.</li>
+                <li><strong>Simple :</strong> Cliquez sur "Héberger", copiez le lien, jouez. Vos amis rejoignent instantanément.</li>
+                </ul>
+                <h3 id="3-synchronisation-intelligente-s-curis-e">3. Synchronisation Intelligente &amp; Sécurisée</h3>
+                <p>Ne perdez jamais votre progression.</p>
+                <ul>
+                <li><strong>Sync SFTP :</strong> Vos mondes sont automatiquement envoyés sur le serveur de stockage après chaque session.</li>
+                <li><strong>Verrouillage de Session :</strong> Le launcher empêche deux joueurs de lancer le serveur en même temps pour éviter les conflits de sauvegarde.</li>
+                </ul>
+                <h3 id="4-gestion-multi-aventures-multi-modpacks-">4. Gestion Multi-Aventures (Multi-Modpacks)</h3>
+                <p>Pourquoi se limiter à un seul style de jeu ?</p>
+                <ul>
+                <li><strong>Instances Isolées :</strong> Basculez entre un serveur "Survie Vanilla", un serveur "Tech/Industriel" et un serveur "Magie" en un clic.</li>
+                <li><strong>Mise à jour Auto :</strong> Les mods et configurations sont automatiquement mis à jour pour tous les joueurs à chaque lancement.</li>
+                </ul>
+                <h3 id="5-administration-simplifi-e">5. Administration Simplifiée</h3>
+                <p>Gérez votre communauté sans toucher à une ligne de commande Linux.</p>
+                <ul>
+                <li><strong>Panel Admin Intégré :</strong> Gérez les versions, ajoutez des mods, et restaurez des sauvegardes directement depuis l'interface du launcher.</li>
+                <li><strong>Console Distante :</strong> Envoyez des commandes au serveur (OP, Gamemode, Kick) même si ce n'est pas vous qui hébergez la session actuelle.</li>
+                </ul>
+                <hr>
+                <h2 id="-pour-qui-est-ce-fait-">🎯 Pour qui est-ce fait ?</h2>
+                <h3 id="pour-les-joueurs">Pour les Joueurs</h3>
+                <blockquote>
+                <p>"Je veux juste jouer avec mes potes sur un gros modpack sans payer 20€/mois pour un serveur qui lag."
+                -&gt; <strong>KORE</strong> est la solution gratuite et performante.</p>
+                </blockquote>
+                <h3 id="pour-les-admin-de-communaut-s">Pour les Admin de Communautés</h3>
+                <blockquote>
+                <p>"J'en ai marre de devoir expliquer à chaque joueur comment installer Forge, copier les mods et mettre la bonne version de Java."
+                -&gt; <strong>KORE</strong> automatise tout l'installation. Vous distribuez un fichier <code>config.json</code>, et c'est parti.</p>
+                </blockquote>
+                <hr>
+                <h2 id="-sp-cifications-techniques">💻 Spécifications Techniques</h2>
+                <ul>
+                <li><strong>Moteur :</strong> Electron / Node.js</li>
+                <li><strong>Compatibilité :</strong> Windows 10/11 (64 bits)</li>
+                <li><strong>Sécurité :</strong> Chiffrement AES-256 des configurations, Transferts SSH/SFTP.</li>
+                <li><strong>Design :</strong> Interface Glassmorphism moderne et intuitive.</li>
+                </ul>
+                <hr>
+                <div class="glass-card p-8 flex flex-col items-center justify-center gap-6 mt-12 mb-8">
+                    <h3 class="text-2xl font-bold uppercase tracking-widest text-white m-0">Prêt à commencer ?</h3>
+                    <p class="text-center text-zinc-400 max-w-lg">Téléchargez le launcher et configurez votre serveur en moins de 5 minutes.</p>
+                    <button class="btn-prime w-full md:w-auto text-lg py-4 px-12" onclick="simulateDownload(this)">TÉLÉCHARGER MAINTENANT</button>
+                    <span class="text-[10px] text-zinc-600 font-mono tracking-widest">VERSION: STABLE_BUILD • WIN_X64</span>
                 </div>
-
-                <!-- 2. FEATURES -->
-                <div id="features-area" class="w-full max-w-6xl">
-                    <div class="text-center mb-16">
-                        <h2 class="text-3xl font-bold uppercase tracking-widest mb-4">Pourquoi KORE ?</h2>
-                        <div class="h-1 w-20 bg-blue-500 mx-auto"></div>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-6 gap-6">
-                        <div class="glass-card p-8 hover:bg-white/5 transition-colors md:col-span-2">
-                            <div class="text-blue-500 font-mono text-[10px] mb-4 tracking-widest">01 // PERFORMANCE</div>
-                            <h3 class="text-lg font-bold mb-2">Host Anywhere</h3>
-                            <p class="text-xs text-zinc-500 leading-relaxed">Votre PC devient le serveur. Utilisez toute la puissance de votre CPU et RAM pour héberger des modpacks lourds sans lag.</p>
-                        </div>
-                        <div class="glass-card p-8 hover:bg-white/5 transition-colors md:col-span-2">
-                            <div class="text-blue-500 font-mono text-[10px] mb-4 tracking-widest">02 // RÉSEAU</div>
-                            <h3 class="text-lg font-bold mb-2">Zéro Config</h3>
-                            <p class="text-xs text-zinc-500 leading-relaxed">Tunneling Playit.gg intégré nativement. Invitez vos amis instantanément sans ouvrir aucun port de votre box.</p>
-                        </div>
-                        <div class="glass-card p-8 hover:bg-white/5 transition-colors md:col-span-2">
-                            <div class="text-blue-500 font-mono text-[10px] mb-4 tracking-widest">03 // SÉCURITÉ</div>
-                            <h3 class="text-lg font-bold mb-2">Sync SFTP</h3>
-                            <p class="text-xs text-zinc-500 leading-relaxed">Sauvegardes cloud automatiques et verrouillage de session pour éviter tout conflit de données.</p>
-                        </div>
-                        <div class="glass-card p-8 hover:bg-white/5 transition-colors md:col-span-3">
-                            <div class="text-blue-500 font-mono text-[10px] mb-4 tracking-widest">04 // FLEXIBILITÉ</div>
-                            <h3 class="text-lg font-bold mb-2">Multi-Modpacks</h3>
-                            <p class="text-xs text-zinc-500 leading-relaxed">Basculez entre Survie, Tech ou Magie en un clic. Chaque instance est totalement isolée.</p>
-                        </div>
-                        <div class="glass-card p-8 hover:bg-white/5 transition-colors md:col-span-3">
-                            <div class="text-blue-500 font-mono text-[10px] mb-4 tracking-widest">05 // CONTRÔLE</div>
-                            <h3 class="text-lg font-bold mb-2">Admin Simplifiée</h3>
-                            <p class="text-xs text-zinc-500 leading-relaxed">Panel admin intégré pour gérer versions et mods. Console distante pour les commandes OP.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 2.5 TARGET AUDIENCE -->
-                <div class="w-full max-w-5xl">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div class="p-8 border-l-2 border-blue-500 bg-white/5 rounded-r-xl">
-                            <h3 class="text-xl font-bold mb-4 text-white">Pour les Joueurs</h3>
-                            <p class="text-sm text-zinc-400 italic">"Je veux juste jouer avec mes potes sur un gros modpack sans payer 20€/mois pour un serveur qui lag."</p>
-                        </div>
-                        <div class="p-8 border-l-2 border-zinc-500 bg-white/5 rounded-r-xl">
-                            <h3 class="text-xl font-bold mb-4 text-white">Pour les Admins</h3>
-                            <p class="text-sm text-zinc-400 italic">"J'en ai marre d'expliquer comment installer Forge et Java. Avec KORE, je distribue un fichier config et c'est parti."</p>
-                        </div>
-                    </div>
-
-                    <!-- TECH SPECS STRIP -->
-                    <div class="mt-12 pt-8 border-t border-white/5 flex flex-wrap justify-center gap-8 text-[10px] font-mono text-zinc-600 uppercase tracking-widest">
-                        <span>Electron / Node.js</span>
-                        <span>Windows 10/11 x64</span>
-                        <span>AES-256 Encryption</span>
-                        <span>SSH2 / SFTP Protocol</span>
-                    </div>
-                </div>
-
-                <!-- 3. DOWNLOAD (Moved here) -->
-                <div id="download-area" class="w-full max-w-5xl pb-20">
-                    <div class="text-center mb-16">
-                        <h2 class="text-3xl font-bold uppercase tracking-widest mb-4">Déploiement</h2>
-                        <div class="h-1 w-20 bg-blue-500 mx-auto"></div>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div class="glass-card p-12 flex flex-col">
-                            <div class="flex items-center gap-6 mb-8">
-                                <div class="p-4 bg-white/5 rounded-2xl text-blue-500">
-                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4h16v16H4zM4 12h16M12 4v16"></path></svg>
-                                </div>
-                                <div>
-                                    <h2 class="font-bold text-xl">KORE Launcher</h2>
-                                    <span class="text-[10px] font-mono text-zinc-600">WIN_X64_STABLE</span>
-                                </div>
-                            </div>
-                            <button class="btn-prime" onclick="simulateDownload(this)">Déployer le Binaire</button>
-                        </div>
-                        <div class="glass-card p-12 flex flex-col">
-                            <div class="flex items-center gap-6 mb-8">
-                                <div class="p-4 bg-white/5 rounded-2xl text-zinc-400">
-                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
-                                </div>
-                                <div>
-                                    <h2 class="font-bold text-xl text-zinc-300">Java 21 Library</h2>
-                                    <span class="text-[10px] font-mono text-zinc-600">DÉPENDANCE_LTS</span>
-                                </div>
-                            </div>
-                            <button class="px-8 py-4 border border-zinc-800 rounded-xl text-[10px] font-mono uppercase tracking-widest hover:border-white transition-all" onclick="window.open('https://www.oracle.com/java/technologies/downloads/#java21', '_blank')">Lien Oracle JDK 21</button>
-                        </div>
-                    </div>
-                </div>
-
             </div>
 
-            <!-- VUE SUPPORT (Initially Hidden) -->
-            <div id="support-view" class="content-section flex flex-col items-center gap-16 max-w-6xl mx-auto pb-20">
-
-                <div class="text-center pt-12">
-                    <h1 class="text-4xl font-black tracking-tighter mb-4 uppercase">Support & Documentation</h1>
-                    <p class="text-zinc-500 font-light">Manuel opérationnel et guide de déploiement.</p>
-                </div>
-
-                <!-- USER GUIDE GRID -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
-
-                    <!-- CARD 1: INSTALLATION -->
-                    <div class="glass-card p-10 flex flex-col gap-4">
-                        <div class="flex items-center gap-3 text-blue-500 mb-2">
-                            <span class="font-mono text-xl font-bold">01.</span>
-                            <h2 class="text-xl font-bold uppercase tracking-wide">Installation</h2>
-                        </div>
-                        <ul class="list-disc list-inside text-sm text-zinc-400 space-y-2 leading-relaxed marker:text-blue-500">
-                            <li>Téléchargez l'installateur <code class="bg-white/10 px-1 py-0.5 rounded text-white font-mono text-xs">KORE-Setup.exe</code> via l'onglet Accueil.</li>
-                            <li>Lancez l'exécutable (Windows uniquement).</li>
-                            <li>Au premier démarrage, le launcher demandera un fichier de configuration.</li>
-                        </ul>
-                    </div>
-
-                    <!-- CARD 2: CONFIGURATION -->
-                    <div class="glass-card p-10 flex flex-col gap-4">
-                        <div class="flex items-center gap-3 text-blue-500 mb-2">
-                            <span class="font-mono text-xl font-bold">02.</span>
-                            <h2 class="text-xl font-bold uppercase tracking-wide">Configuration</h2>
-                        </div>
-                        <p class="text-sm text-zinc-400 leading-relaxed">
-                            Le launcher nécessite une "clé" d'accès. L'administrateur du serveur vous fournira un fichier <code class="bg-white/10 px-1 py-0.5 rounded text-white font-mono text-xs">.json</code>.
-                        </p>
-                        <div class="bg-black/30 p-4 rounded-lg border border-white/5 mt-2">
-                            <p class="text-xs text-zinc-500 italic">Cliquez sur "Importer une configuration" et sélectionnez ce fichier. Il sera chiffré localement.</p>
-                        </div>
-                    </div>
-
-                    <!-- CARD 3: JOUER (CLIENT) -->
-                    <div class="glass-card p-10 flex flex-col gap-4">
-                        <div class="flex items-center gap-3 text-blue-500 mb-2">
-                            <span class="font-mono text-xl font-bold">03.</span>
-                            <h2 class="text-xl font-bold uppercase tracking-wide">Jouer (Client)</h2>
-                        </div>
-                        <ol class="list-decimal list-inside text-sm text-zinc-400 space-y-2 leading-relaxed marker:text-zinc-600">
-                            <li>Connectez-vous avec votre compte Microsoft.</li>
-                            <li>Sélectionnez votre <strong>Modpack</strong> en haut à gauche.</li>
-                            <li>Cliquez sur <span class="text-white font-bold">"LANCER LE JEU"</span>.</li>
-                        </ol>
-                        <p class="text-xs text-zinc-500 mt-2">Le launcher gère automatiquement le téléchargement de Java, Forge et des mods.</p>
-                    </div>
-
-                    <!-- CARD 4: HÉBERGER (HOST) -->
-                    <div class="glass-card p-10 flex flex-col gap-4 border-blue-500/30 shadow-[0_0_30px_rgba(59,130,246,0.1)]">
-                        <div class="flex items-center gap-3 text-blue-500 mb-2">
-                            <span class="font-mono text-xl font-bold">04.</span>
-                            <h2 class="text-xl font-bold uppercase tracking-wide">Héberger (Host)</h2>
-                        </div>
-                        <p class="text-xs text-zinc-300 mb-2">Requis : Bon PC (16Go+ RAM) et Fibre.</p>
-                        <ul class="text-sm text-zinc-400 space-y-3 leading-relaxed">
-                            <li class="flex gap-3"><span class="text-blue-500">→</span> Allez dans l'onglet <strong>Serveur</strong>.</li>
-                            <li class="flex gap-3"><span class="text-blue-500">→</span> Cliquez sur <strong>Héberger la Session</strong>.</li>
-                            <li class="flex gap-3"><span class="text-blue-500">→</span> Attendez le tunnel <strong>Playit.gg</strong> et partagez l'IP.</li>
-                            <li class="flex gap-3"><span class="text-red-400">■</span> À la fin, cliquez sur <strong>Arrêter & Sync</strong> pour sauvegarder.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- ADMIN SECTION -->
-                <div class="w-full mt-12">
-                    <div class="text-center mb-12">
-                        <h2 class="text-2xl font-bold uppercase tracking-widest mb-4 text-zinc-300">Administration Avancée</h2>
-                        <div class="h-px w-full bg-gradient-to-r from-transparent via-zinc-700 to-transparent"></div>
-                    </div>
-
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-
-                        <!-- FILE STRUCTURE -->
-                        <div class="glass-card p-8">
-                            <h3 class="text-sm font-mono text-blue-400 mb-6 uppercase tracking-wider">Architecture SFTP</h3>
-                            <pre class="font-mono text-[10px] sm:text-xs text-zinc-400 leading-relaxed overflow-x-auto p-4 bg-black/40 rounded-lg border border-white/5">
-/home/user/kore_storage/
-├── modpacks/
-│   ├── PVP/
-│   │   ├── mods/          <span class="text-zinc-600"># .jar files</span>
-│   │   ├── server/        <span class="text-zinc-600"># World data</span>
-│   │   ├── version.txt    <span class="text-zinc-600"># MC Version</span>
-│   │   ├── f_ver.txt      <span class="text-zinc-600"># Forge Version</span>
-│   │   └── lock.txt       <span class="text-zinc-600"># Session lock</span>
-│   └── CREATIF/
-└── admin_pass.txt</pre>
-                        </div>
-
-                        <!-- CONFIG TEMPLATE -->
-                        <div class="glass-card p-8">
-                            <h3 class="text-sm font-mono text-blue-400 mb-6 uppercase tracking-wider">Config.json Template</h3>
-                            <pre class="font-mono text-[10px] sm:text-xs text-zinc-400 leading-relaxed overflow-x-auto p-4 bg-black/40 rounded-lg border border-white/5">
-{
+            <!-- VUE SUPPORT (Verbatim README.md) -->
+            <div id="support-view" class="content-section markdown-content">
+                <h1 id="kore-launcher-glass-edition">KORE Launcher - Glass Edition</h1>
+                <p><img src="https://placehold.co/1200x400/0f172a/ffffff?text=KORE+LAUNCHER" alt="KORE Banner"></p>
+                <p><strong>KORE Launcher</strong> est une solution "Host Anywhere" pour Minecraft moddé. Il permet à n'importe quel membre d'une communauté d'héberger la session de jeu sur sa propre machine, tout en garantissant que la progression (monde, inventaires) est synchronisée et sécurisée sur un serveur de stockage centralisé via SFTP.</p>
+                <p>Plus besoin de louer un serveur de jeu 24/7 coûteux. La puissance de calcul est fournie par le joueur hôte, le stockage par un simple VPS ou NAS.</p>
+                <h2 id="-fonctionnalit-s-cl-s">🚀 Fonctionnalités Clés</h2>
+                <ul>
+                <li><strong>Architecture Hybride</strong> : Le serveur tourne en local (sur votre PC puissant) mais les sauvegardes sont dans le cloud.</li>
+                <li><strong>Zéro Configuration Réseau</strong> : Intégration native de <strong>Playit.gg</strong> (Tunneling) pour inviter vos amis sans ouvrir de ports.</li>
+                <li><strong>Synchronisation Intelligente</strong> : Seuls les fichiers modifiés sont transférés. Verrouillage de session pour éviter les conflits.</li>
+                <li><strong>Multi-Modpacks</strong> : Gérez plusieurs aventures (Survie, Créatif, Hardcore) avec des instances isolées.</li>
+                <li><strong>Interface Glassmorphism</strong> : Une UI moderne, transparente et fluide.</li>
+                </ul>
+                <hr>
+                <h2 id="-guide-utilisateur">🎮 Guide Utilisateur</h2>
+                <h3 id="1-installation">1. Installation</h3>
+                <ol>
+                <li>Téléchargez l'installateur <code>KORE-Setup-X.X.X.exe</code>.</li>
+                <li>Lancez l'installation (Windows uniquement).</li>
+                <li>Au premier démarrage, le launcher vous demandera un fichier de configuration.</li>
+                </ol>
+                <h3 id="2-configuration-config-json-">2. Configuration (<code>config.json</code>)</h3>
+                <p>Le launcher a besoin d'une "clé" pour accéder au stockage distant.</p>
+                <ul>
+                <li>L'administrateur de votre serveur doit vous fournir un fichier <code>.json</code>.</li>
+                <li>Cliquez sur "Importer une configuration" et sélectionnez ce fichier.</li>
+                <li>Une fois validé, le fichier est chiffré et stocké en sécurité. L'original est supprimé.</li>
+                </ul>
+                <h3 id="3-jouer-client-">3. Jouer (Client)</h3>
+                <ul>
+                <li>Connectez-vous avec votre compte Microsoft.</li>
+                <li>Sélectionnez votre Modpack en haut à gauche.</li>
+                <li>Cliquez sur <strong>"LANCER LE JEU"</strong>.</li>
+                <li>Le launcher va télécharger les mods, Forge et Java automatiquement.</li>
+                </ul>
+                <h3 id="4-h-berger-la-partie-host-">4. Héberger la partie (Host)</h3>
+                <p>Si vous avez un bon PC et une bonne connexion fibre :</p>
+                <ol>
+                <li>Allez dans l'onglet <strong>"Serveur"</strong> (à gauche).</li>
+                <li>Cliquez sur <strong>"Héberger la Session"</strong>.</li>
+                <li>Le launcher va :<ul>
+                <li>Verrouiller le serveur distant (personne d'autre ne peut lancer en même temps).</li>
+                <li>Télécharger la dernière sauvegarde.</li>
+                <li>Lancer le serveur Minecraft localement.</li>
+                <li>Lancer un tunnel <strong>Playit.gg</strong> et vous donner l'adresse IP à partager.</li>
+                </ul>
+                </li>
+                <li>Une fois fini, cliquez sur <strong>"Arrêter &amp; Sync"</strong> pour renvoyer la sauvegarde sur le cloud.</li>
+                </ol>
+                <hr>
+                <h2 id="-guide-administrateur-technique-">🛠️ Guide Administrateur (Technique)</h2>
+                <p>Cette section est destinée à ceux qui mettent en place l'infrastructure KORE.</p>
+                <h3 id="architecture-du-serveur-distant-sftp-">Architecture du Serveur Distant (SFTP)</h3>
+                <p>Le launcher a besoin d'un accès SFTP à un dossier racine sur un serveur Linux.
+                Voici l'arborescence requise à la racine du dossier utilisateur :</p>
+                <pre><code class="lang-text">/home/user/kore_storage/
+├── modpacks/              # Dossier racine des modpacks
+│   ├── PVP/               # Nom du modpack (identique au menu)
+│   │   ├── mods/          # Tous les .jar du modpack
+│   │   ├── server/        # Sauvegardes du serveur (zippées ou dossiers)
+│   │   ├── version.txt    # Contient le numéro de version MC (ex: 1.20.1)
+│   │   ├── f_ver.txt      # Contient la version précise de Forge (ex: 47.1.0)
+│   │   ├── modpack.txt    # Version du modpack (ex: 1.0.0) pour trigger les mises à jour
+│   │   └── lock.txt       # (Créé automatiquement par le launcher quand utilisé)
+│   └── CREATIF/           # Autre modpack...
+└── admin_pass.txt         # (Optionnel) Mot de passe global pour le panel admin
+</code></pre>
+                <h3 id="fichier-config-json-template-">Fichier <code>config.json</code> (Template)</h3>
+                <p>Distribuez ce fichier à vos joueurs.</p>
+                <pre><code class="lang-json">{
   "host": "ip.de.votre.vps",
   "port": 22,
   "username": "sftp_user",
   "password": "sftp_password",
-  "remoteRoot": "/home/user/kore_storage",
-  "javaPath": "" <span class="text-zinc-600">// Optionnel</span>
-}</pre>
-                            <p class="mt-4 text-[10px] text-zinc-500 uppercase tracking-widest text-center">⚠ Ne jamais partager publiquement</p>
-                        </div>
+  "remoteRoot": "/home/sftp_user/kore_storage",
+  "javaPath": ""  // Optionnel : chemin vers un Java spécifique
+}
+</code></pre>
+                <h3 id="compilation-build-">Compilation (Build)</h3>
+                <p>Pour modifier le code source et recompiler l'exécutable :</p>
+                <p><strong>Pré-requis :</strong></p>
+                <ul>
+                <li>Node.js v16+</li>
+                <li>Python (pour certaines dépendances de build)</li>
+                </ul>
+                <p><strong>Commandes :</strong></p>
+                <pre><code class="lang-bash"># 1. Installer les dépendances
+npm install
 
-                    </div>
-                </div>
+# 2. Lancer en mode développement
+npm start
 
+# 3. Compiler l'installateur Windows (NSIS)
+npm run build
+</code></pre>
+                <blockquote>
+                <p><strong>Note :</strong> L'exécutable <code>playit.exe</code> doit être présent à la racine du projet pour être inclus dans le build final.</p>
+                </blockquote>
+                <h3 id="s-curit-bonnes-pratiques">Sécurité &amp; Bonnes Pratiques</h3>
+                <ul>
+                <li><strong>Ne jamais commiter</strong> de <code>config.json</code> ou de clés privées dans le code source.</li>
+                <li>Le launcher utilise <code>app.getPath('userData')</code> pour stocker les données sensibles.</li>
+                <li>L'accès au panel Admin (dans le launcher) est protégé par mot de passe (défini dans <code>admin_pass.txt</code> sur le serveur ou localement).</li>
+                </ul>
+                <hr>
+                <h2 id="-stack-technique">🏗️ Stack Technique</h2>
+                <ul>
+                <li><strong>Electron</strong> : Framework d'application bureau.</li>
+                <li><strong>Node.js</strong> : Backend local.</li>
+                <li><strong>SSH2 / SFTP</strong> : Protocole de transfert sécurisé.</li>
+                <li><strong>TailwindCSS</strong> : Design de l'interface.</li>
+                <li><strong>Glassmorphism</strong> : Style visuel.</li>
+                </ul>
             </div>
 
         </main>
 
-        <footer class="w-full py-8 border-t border-white/5 bg-black/40 backdrop-blur-xl">
+        <footer class="w-full py-8 border-t border-white/5 bg-black/40 backdrop-blur-xl mt-auto">
             <div class="container mx-auto px-12 grid grid-cols-2 md:grid-cols-4 gap-8">
                 <div class="flex flex-col gap-1">
                     <span class="text-[9px] text-zinc-600 uppercase tracking-widest">Signal_Stability</span>
