@@ -1,411 +1,124 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KORE | Optimized Runtime Engine</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@900&family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --photon: #3b82f6;
-            --bg-deep: #050608;
-            --glass: rgba(255, 255, 255, 0.02);
-            --glass-border: rgba(255, 255, 255, 0.06);
-        }
+# KORE Launcher - Glass Edition
 
-        * { cursor: crosshair; }
+![KORE Banner](https://placehold.co/1200x400/0f172a/ffffff?text=KORE+LAUNCHER)
 
-        body {
-            background-color: #000;
-            color: #f1f5f9;
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            overflow: hidden; /* Désactivé pendant l'intro */
-        }
+**KORE Launcher** est une solution "Host Anywhere" pour Minecraft moddé. Il permet à n'importe quel membre d'une communauté d'héberger la session de jeu sur sa propre machine, tout en garantissant que la progression (monde, inventaires) est synchronisée et sécurisée sur un serveur de stockage centralisé via SFTP.
 
-        /* --- SÉQUENCE D'ENTRÉE : WARP SPEED --- */
-        #warp-container {
-            position: fixed;
-            inset: 0;
-            z-index: 9999;
-            background: #000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: opacity 1s ease-out;
-        }
+Plus besoin de louer un serveur de jeu 24/7 coûteux. La puissance de calcul est fournie par le joueur hôte, le stockage par un simple VPS ou NAS.
 
-        #warp-canvas { width: 100%; height: 100%; }
+## 🚀 Fonctionnalités Clés
 
-        .flash-overlay {
-            position: absolute;
-            inset: 0;
-            background: white;
-            opacity: 0;
-            pointer-events: none;
-            z-index: 10000;
-        }
+*   **Architecture Hybride** : Le serveur tourne en local (sur votre PC puissant) mais les sauvegardes sont dans le cloud.
+*   **Zéro Configuration Réseau** : Intégration native de **Playit.gg** (Tunneling) pour inviter vos amis sans ouvrir de ports.
+*   **Synchronisation Intelligente** : Seuls les fichiers modifiés sont transférés. Verrouillage de session pour éviter les conflits.
+*   **Multi-Modpacks** : Gérez plusieurs aventures (Survie, Créatif, Hardcore) avec des instances isolées.
+*   **Interface Glassmorphism** : Une UI moderne, transparente et fluide.
 
-        /* --- STRUCTURE DU SITE --- */
-        #main-site {
-            opacity: 0;
-            transform: scale(1.1);
-            transition: opacity 1.5s ease, transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            background-color: var(--bg-deep);
-            background-image: 
-                radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.03) 0%, transparent 80%),
-                linear-gradient(rgba(255, 255, 255, 0.01) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
-            background-size: 100% 100%, 60px 60px, 60px 60px;
-        }
+---
 
-        #main-site.revealed {
-            opacity: 1;
-            transform: scale(1);
-            overflow-y: auto;
-        }
+## 🎮 Guide Utilisateur
 
-        /* --- LOGO K-SPLIT & FLUX --- */
-        .logo-wrapper {
-            position: relative;
-            display: inline-block;
-            padding: 40px 0;
-            will-change: transform;
-        }
+### 1. Installation
+1.  Téléchargez l'installateur `KORE-Setup-X.X.X.exe`.
+2.  Lancez l'installation (Windows uniquement).
+3.  Au premier démarrage, le launcher vous demandera un fichier de configuration.
 
-        .k-split {
-            font-family: 'Poppins', sans-serif;
-            font-size: 5rem;
-            font-weight: 900;
-            line-height: 1;
-            color: white;
-            position: relative;
-            /* Découpe laser à 50% */
-            clip-path: polygon(0% 0%, 100% 0%, 100% 46%, 0% 46%, 0% 54%, 100% 54%, 100% 100%, 0% 100%);
-            z-index: 5;
-            -webkit-font-smoothing: antialiased;
-        }
+### 2. Configuration (`config.json`)
+Le launcher a besoin d'une "clé" pour accéder au stockage distant.
+*   L'administrateur de votre serveur doit vous fournir un fichier `.json`.
+*   Cliquez sur "Importer une configuration" et sélectionnez ce fichier.
+*   Une fois validé, le fichier est chiffré et stocké en sécurité. L'original est supprimé.
 
-        .lightning-container {
-            position: absolute;
-            top: 50%;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 10;
-            transform: translateY(-50%);
-        }
+### 3. Jouer (Client)
+*   Connectez-vous avec votre compte Microsoft.
+*   Sélectionnez votre Modpack en haut à gauche.
+*   Cliquez sur **"LANCER LE JEU"**.
+*   Le launcher va télécharger les mods, Forge et Java automatiquement.
 
-        .photon-pulse {
-            position: absolute;
-            top: 50%;
-            left: 0;
-            width: 120px;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--photon) 40%, #fff 95%, #fff);
-            margin-top: -1px; 
-            transform: translate3d(-250%, 0, 0);
-            box-shadow: 0 0 20px var(--photon), 0 0 40px rgba(59, 130, 246, 0.4);
-            opacity: 0;
-            animation: photon-glide 2.2s cubic-bezier(0.8, 0, 0.2, 1) infinite;
-            will-change: transform, opacity;
-        }
+### 4. Héberger la partie (Host)
+Si vous avez un bon PC et une bonne connexion fibre :
+1.  Allez dans l'onglet **"Serveur"** (à gauche).
+2.  Cliquez sur **"Héberger la Session"**.
+3.  Le launcher va :
+    *   Verrouiller le serveur distant (personne d'autre ne peut lancer en même temps).
+    *   Télécharger la dernière sauvegarde.
+    *   Lancer le serveur Minecraft localement.
+    *   Lancer un tunnel **Playit.gg** et vous donner l'adresse IP à partager.
+4.  Une fois fini, cliquez sur **"Arrêter & Sync"** pour renvoyer la sauvegarde sur le cloud.
 
-        .photon-pulse::after {
-            content: '';
-            position: absolute;
-            right: -2px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 6px;
-            height: 6px;
-            background: white;
-            border-radius: 50%;
-            box-shadow: 0 0 15px white, 0 0 30px var(--photon);
-        }
+---
 
-        @keyframes photon-glide {
-            0% { transform: translate3d(-250%, 0, 0); opacity: 0; }
-            10% { opacity: 1; }
-            45% { transform: translate3d(250%, 0, 0); opacity: 1; }
-            55%, 100% { transform: translate3d(300%, 0, 0); opacity: 0; }
-        }
+## 🛠️ Guide Administrateur (Technique)
 
-        /* --- GLASSMORPHISM CARDS --- */
-        .glass-card {
-            background: var(--glass);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid var(--glass-border);
-            border-radius: 1.5rem;
-            transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-        }
+Cette section est destinée à ceux qui mettent en place l'infrastructure KORE.
 
-        .glass-card:hover {
-            border-color: rgba(59, 130, 246, 0.3);
-            background: rgba(255, 255, 255, 0.04);
-            transform: translateY(-5px);
-        }
+### Architecture du Serveur Distant (SFTP)
+Le launcher a besoin d'un accès SFTP à un dossier racine sur un serveur Linux.
+Voici l'arborescence requise à la racine du dossier utilisateur :
 
-        /* --- UI NAVIGATION --- */
-        .nav-link {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: #64748b;
-            transition: color 0.3s;
-        }
-        .nav-link:hover, .nav-link.active { color: var(--photon); }
+```text
+/home/user/kore_storage/
+├── modpacks/              # Dossier racine des modpacks
+│   ├── PVP/               # Nom du modpack (identique au menu)
+│   │   ├── mods/          # Tous les .jar du modpack
+│   │   ├── server/        # Sauvegardes du serveur (zippées ou dossiers)
+│   │   ├── version.txt    # Contient le numéro de version MC (ex: 1.20.1)
+│   │   ├── f_ver.txt      # Contient la version précise de Forge (ex: 47.1.0)
+│   │   ├── modpack.txt    # Version du modpack (ex: 1.0.0) pour trigger les mises à jour
+│   │   └── lock.txt       # (Créé automatiquement par le launcher quand utilisé)
+│   └── CREATIF/           # Autre modpack...
+└── admin_pass.txt         # (Optionnel) Mot de passe global pour le panel admin
+```
 
-        .content-section { display: none; }
-        .content-section.active { display: block; animation: sectionIn 0.8s ease-out; }
+### Fichier `config.json` (Template)
+Distribuez ce fichier à vos joueurs.
 
-        @keyframes sectionIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+```json
+{
+  "host": "ip.de.votre.vps",
+  "port": 22,
+  "username": "sftp_user",
+  "password": "sftp_password",
+  "remoteRoot": "/home/sftp_user/kore_storage",
+  "javaPath": ""  // Optionnel : chemin vers un Java spécifique
+}
+```
 
-        .btn-prime {
-            background: #fff;
-            color: #000;
-            font-family: 'JetBrains Mono', monospace;
-            font-weight: 700;
-            padding: 1rem 2rem;
-            border-radius: 0.75rem;
-            text-transform: uppercase;
-            font-size: 0.75rem;
-            transition: all 0.3s ease;
-            width: 100%;
-        }
+### Compilation (Build)
 
-        .btn-prime:hover {
-            background: var(--photon);
-            color: #fff;
-            box-shadow: 0 0 25px var(--photon);
-        }
+Pour modifier le code source et recompiler l'exécutable :
 
-        @keyframes flash-out {
-            0% { opacity: 0; }
-            20% { opacity: 1; }
-            100% { opacity: 0; }
-        }
-    </style>
-</head>
-<body>
+**Pré-requis :**
+*   Node.js v16+
+*   Python (pour certaines dépendances de build)
 
-    <!-- OVERLAY D'INTRODUCTION (WARP DRIVE) -->
-    <div id="warp-container">
-        <div class="flash-overlay" id="flash"></div>
-        <canvas id="warp-canvas"></canvas>
-    </div>
+**Commandes :**
 
-    <!-- CONTENU PRINCIPAL -->
-    <div id="main-site">
-        <nav class="w-full px-12 py-8 flex justify-between items-center z-50">
-            <div class="flex items-center gap-4">
-                <div class="logo-wrapper scale-50 -ml-12">
-                    <div class="lightning-container"><div class="photon-pulse"></div></div>
-                    <div class="k-split">K</div>
-                </div>
-                <span class="font-black tracking-tighter text-xl">KORE</span>
-            </div>
-            <div class="flex gap-10">
-                <button onclick="showSection('home')" class="nav-link active" id="link-home">Console</button>
-                <button onclick="showSection('features')" class="nav-link" id="link-features">Architecture</button>
-                <button onclick="showSection('download')" class="nav-link" id="link-download">Déploiement</button>
-            </div>
-            <div class="text-[10px] font-mono text-zinc-600 tracking-widest">BUILD_2026_PTSI</div>
-        </nav>
+```bash
+# 1. Installer les dépendances
+npm install
 
-        <main class="flex-1 container mx-auto px-6 flex flex-col items-center justify-center">
-            
-            <!-- SECTION ACCUEIL -->
-            <div id="home" class="content-section active text-center max-w-4xl">
-                <div class="logo-wrapper mb-12">
-                    <div class="lightning-container"><div class="photon-pulse" style="animation-duration: 1.5s;"></div></div>
-                    <div class="k-split" style="font-size: 10rem;">K</div>
-                </div>
-                <h1 class="text-6xl font-black tracking-tighter mb-6 uppercase leading-tight">
-                    LIGHTNING <span class="text-blue-500 italic">FAST</span><br>RUNTIME ENGINE.
-                </h1>
-                <p class="text-zinc-500 text-lg font-light mb-10 max-w-2xl mx-auto leading-relaxed">
-                    Moteur d'exécution ultra-basse latence conçu pour l'interconnexion massive. Performance brute pour architectures critiques.
-                </p>
-                <div class="flex gap-4 justify-center">
-                    <button onclick="showSection('download')" class="btn-prime w-auto">Télécharger le module</button>
-                    <button onclick="showSection('features')" class="px-8 py-4 border border-zinc-800 rounded-xl text-xs font-mono uppercase tracking-widest hover:border-white transition-all">Specs_Techniques</button>
-                </div>
-            </div>
+# 2. Lancer en mode développement
+npm start
 
-            <!-- SECTION ARCHITECTURE -->
-            <div id="features" class="content-section w-full max-w-5xl">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="glass-card p-10">
-                        <div class="text-blue-500 font-mono text-[10px] mb-6 tracking-widest">01 // LATENCE</div>
-                        <h3 class="text-xl font-bold mb-4">Usinage du Signal</h3>
-                        <p class="text-xs text-zinc-500 leading-relaxed font-light">Le Kernel KORE garantit une exécution sub-milliseconde. Pas de gigue dans le bus interne.</p>
-                    </div>
-                    <div class="glass-card p-10">
-                        <div class="text-blue-500 font-mono text-[10px] mb-6 tracking-widest">02 // TOPOLOGIE</div>
-                        <h3 class="text-xl font-bold mb-4">Réseau Cristallin</h3>
-                        <p class="text-xs text-zinc-500 leading-relaxed font-light">Chaque utilisateur devient une brique de calcul optimisée dans le cluster mondial.</p>
-                    </div>
-                    <div class="glass-card p-10">
-                        <div class="text-blue-500 font-mono text-[10px] mb-6 tracking-widest">03 // OPTIMISATION</div>
-                        <h3 class="text-xl font-bold mb-4">Cœur Java 21</h3>
-                        <p class="text-xs text-zinc-500 leading-relaxed font-light">Compilation JIT avancée pour une gestion mémoire agressive et une vitesse de calcul brute.</p>
-                    </div>
-                </div>
-            </div>
+# 3. Compiler l'installateur Windows (NSIS)
+npm run build
+```
 
-            <!-- SECTION DEPLOIEMENT -->
-            <div id="download" class="content-section w-full max-w-5xl">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="glass-card p-12 flex flex-col">
-                        <div class="flex items-center gap-6 mb-8">
-                            <div class="p-4 bg-white/5 rounded-2xl text-blue-500">
-                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4h16v16H4zM4 12h16M12 4v16"></path></svg>
-                            </div>
-                            <div>
-                                <h2 class="font-bold text-xl">KORE Launcher</h2>
-                                <span class="text-[10px] font-mono text-zinc-600">WIN_X64_STABLE</span>
-                            </div>
-                        </div>
-                        <button class="btn-prime" onclick="simulateDownload(this)">Déployer le Binaire</button>
-                    </div>
-                    <div class="glass-card p-12 flex flex-col">
-                        <div class="flex items-center gap-6 mb-8">
-                            <div class="p-4 bg-white/5 rounded-2xl text-zinc-400">
-                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
-                            </div>
-                            <div>
-                                <h2 class="font-bold text-xl text-zinc-300">Java 21 Library</h2>
-                                <span class="text-[10px] font-mono text-zinc-600">DÉPENDANCE_LTS</span>
-                            </div>
-                        </div>
-                        <button class="px-8 py-4 border border-zinc-800 rounded-xl text-[10px] font-mono uppercase tracking-widest hover:border-white transition-all" onclick="window.open('https://www.oracle.com/java/technologies/downloads/#java21', '_blank')">Lien Oracle JDK 21</button>
-                    </div>
-                </div>
-            </div>
-        </main>
+> **Note :** L'exécutable `playit.exe` doit être présent à la racine du projet pour être inclus dans le build final.
 
-        <footer class="w-full py-8 border-t border-white/5 bg-black/40 backdrop-blur-xl">
-            <div class="container mx-auto px-12 grid grid-cols-2 md:grid-cols-4 gap-8">
-                <div class="flex flex-col gap-1">
-                    <span class="text-[9px] text-zinc-600 uppercase tracking-widest">Signal_Stability</span>
-                    <span class="text-[11px] font-mono text-blue-400">0.99998_SIGMA</span>
-                </div>
-                <div class="flex flex-col gap-1">
-                    <span class="text-[9px] text-zinc-600 uppercase tracking-widest">Bus_Latency</span>
-                    <span class="text-[11px] font-mono text-zinc-400">&lt; 0.05ms</span>
-                </div>
-                <div class="flex flex-col gap-1">
-                    <span class="text-[9px] text-zinc-600 uppercase tracking-widest">System_Status</span>
-                    <span class="text-[11px] font-mono text-emerald-500 animate-pulse">OPTIMIZED_READY</span>
-                </div>
-                <div class="flex flex-col gap-1 items-end">
-                    <span class="text-[9px] text-zinc-600 uppercase tracking-widest">Node_ID</span>
-                    <span class="text-[11px] font-mono text-zinc-600">NODE_0xAF42</span>
-                </div>
-            </div>
-        </footer>
-    </div>
+### Sécurité & Bonnes Pratiques
 
-    <script>
-        // --- LOGIQUE WARP DRIVE (ENTRÉE) ---
-        const canvas = document.getElementById('warp-canvas');
-        const ctx = canvas.getContext('2d');
-        let w, h, stars = [];
-        const count = 450;
-        let speed = 0.5;
-        let warping = true;
+*   **Ne jamais commiter** de `config.json` ou de clés privées dans le code source.
+*   Le launcher utilise `app.getPath('userData')` pour stocker les données sensibles.
+*   L'accès au panel Admin (dans le launcher) est protégé par mot de passe (défini dans `admin_pass.txt` sur le serveur ou localement).
 
-        function initCanvas() {
-            w = canvas.width = window.innerWidth;
-            h = canvas.height = window.innerHeight;
-            stars = [];
-            for(let i=0; i<count; i++) {
-                stars.push({
-                    x: Math.random() * w - w/2,
-                    y: Math.random() * h - h/2,
-                    z: Math.random() * w,
-                });
-            }
-        }
+---
 
-        function drawWarp() {
-            if(!warping) return;
-            ctx.fillStyle = '#000';
-            ctx.fillRect(0,0,w,h);
-            
-            if(speed < 45) speed *= 1.06; // Accélération exponentielle
+## 🏗️ Stack Technique
 
-            for(let i=0; i<count; i++) {
-                let s = stars[i];
-                let x = s.x * (w / s.z);
-                let y = s.y * (w / s.z);
-                
-                s.z -= speed;
-                if(s.z <= 0) s.z = w;
-
-                let x2 = s.x * (w / (s.z + speed * 1.5));
-                let y2 = s.y * (w / (s.z + speed * 1.5));
-
-                ctx.beginPath();
-                ctx.lineWidth = 1.5;
-                ctx.strokeStyle = i % 8 === 0 ? '#3b82f6' : '#ffffff';
-                ctx.moveTo(x + w/2, y + h/2);
-                ctx.lineTo(x2 + w/2, y2 + h/2);
-                ctx.stroke();
-            }
-            requestAnimationFrame(drawWarp);
-        }
-
-        window.onload = () => {
-            initCanvas();
-            drawWarp();
-
-            setTimeout(() => {
-                document.getElementById('flash').style.animation = 'flash-out 0.8s ease-out forwards';
-                setTimeout(() => {
-                    warping = false;
-                    document.getElementById('warp-container').style.opacity = '0';
-                    document.getElementById('main-site').classList.add('revealed');
-                    document.body.style.overflow = 'auto';
-                    setTimeout(() => document.getElementById('warp-container').remove(), 1000);
-                }, 200);
-            }, 2600); // Durée du warp
-        };
-
-        window.onresize = initCanvas;
-
-        // --- NAVIGATION SPA ---
-        function showSection(sectionId) {
-            document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
-            document.getElementById(sectionId).classList.add('active');
-            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-            document.getElementById('link-' + sectionId).classList.add('active');
-        }
-
-        function simulateDownload(btn) {
-            const originalText = btn.innerText;
-            btn.disabled = true;
-            btn.innerText = "ACCÈS_BUS...";
-            setTimeout(() => {
-                btn.innerText = "TRANSFERT_TERMINÉ";
-                btn.style.background = "#fff"; btn.style.color = "#000";
-                setTimeout(() => {
-                    btn.innerText = originalText;
-                    btn.disabled = false;
-                }, 3000);
-            }, 2000);
-        }
-    </script>
-</body>
-</html>
+*   **Electron** : Framework d'application bureau.
+*   **Node.js** : Backend local.
+*   **SSH2 / SFTP** : Protocole de transfert sécurisé.
+*   **TailwindCSS** : Design de l'interface.
+*   **Glassmorphism** : Style visuel.
