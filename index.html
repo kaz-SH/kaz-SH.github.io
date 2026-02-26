@@ -387,64 +387,116 @@
 
             <!-- SECTION SUPPORT -->
             <div id="support-section" class="hidden flex-col items-center gap-10 w-full max-w-5xl pb-32">
-                <div class="text-center mb-10">
-                    <h2 class="text-4xl font-black mb-4">GUIDE DE DÉPLOIEMENT</h2>
-                    <p class="text-zinc-500">Séquence d'initialisation du nœud KORE.</p>
+                <div class="text-center mb-10 w-full">
+                    <img src="https://placehold.co/1200x400/0f172a/ffffff?text=KORE+LAUNCHER" alt="KORE Banner" class="w-full rounded-2xl border border-white/10 mb-8 opacity-80">
+                    <h2 class="text-4xl font-black mb-4 uppercase">KORE Launcher - Glass Edition</h2>
+                    <p class="text-zinc-500 max-w-2xl mx-auto">
+                        Solution "Host Anywhere" pour Minecraft moddé. Hébergez la session sur votre machine, synchronisez via SFTP.
+                    </p>
                 </div>
 
-                <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <!-- Étape 1 -->
-                    <div class="glass-card p-8 border-l-4 border-l-blue-500">
-                        <div class="text-blue-500 font-mono text-[10px] mb-2 tracking-widest">PHASE 01</div>
-                        <h3 class="text-xl font-bold mb-2">Exécution du Binaire</h3>
-                        <p class="text-sm text-zinc-400 leading-relaxed">
-                            Lancez le fichier <code>KORE_Setup_x64.exe</code> que vous venez de télécharger. L'installation est silencieuse et automatique.
-                        </p>
-                    </div>
-
-                    <!-- Étape 2 -->
-                    <div class="glass-card p-8 border-l-4 border-l-white">
-                        <div class="text-white font-mono text-[10px] mb-2 tracking-widest">PHASE 02</div>
-                        <h3 class="text-xl font-bold mb-2">Identification</h3>
-                        <p class="text-sm text-zinc-400 leading-relaxed">
-                            Au premier lancement, créez votre profil "Pilote". Vos clés SSH seront générées automatiquement pour la sécurisation du tunnel.
-                        </p>
-                    </div>
-
-                    <!-- Étape 3 -->
-                    <div class="glass-card p-8 border-l-4 border-l-white">
-                        <div class="text-white font-mono text-[10px] mb-2 tracking-widest">PHASE 03</div>
-                        <h3 class="text-xl font-bold mb-2">Création d'Instance</h3>
-                        <p class="text-sm text-zinc-400 leading-relaxed">
-                            Sélectionnez un modpack (ex: "Tech Reborn") et cliquez sur <strong>INITIALISER LE NOYAU</strong>. Le téléchargement des assets commencera.
-                        </p>
-                    </div>
-
-                    <!-- Étape 4 -->
-                    <div class="glass-card p-8 border-l-4 border-l-emerald-500">
-                        <div class="text-emerald-500 font-mono text-[10px] mb-2 tracking-widest">PHASE 04</div>
-                        <h3 class="text-xl font-bold mb-2">Connexion du Cluster</h3>
-                        <p class="text-sm text-zinc-400 leading-relaxed">
-                            Une fois le serveur prêt (indicateur vert), cliquez sur <strong>PARTAGER LE LIEN</strong>. Envoyez ce lien à votre escouade pour qu'ils rejoignent la session.
-                        </p>
-                    </div>
+                <!-- Fonctionnalités Clés -->
+                <div class="w-full glass-card p-8">
+                    <h3 class="text-xl font-bold mb-6 text-blue-500">🚀 Fonctionnalités Clés</h3>
+                    <ul class="space-y-4 text-sm text-zinc-300 list-disc pl-5 marker:text-blue-500">
+                        <li><strong class="text-white">Architecture Hybride :</strong> Le serveur tourne en local, sauvegardes dans le cloud.</li>
+                        <li><strong class="text-white">Zéro Configuration Réseau :</strong> Intégration native de <strong>Playit.gg</strong> (Tunneling).</li>
+                        <li><strong class="text-white">Synchronisation Intelligente :</strong> Transfert différentiel et verrouillage de session.</li>
+                        <li><strong class="text-white">Multi-Modpacks :</strong> Instances isolées (Survie, Créatif, Hardcore).</li>
+                        <li><strong class="text-white">Interface Glassmorphism :</strong> Design moderne et transparent.</li>
+                    </ul>
                 </div>
 
-                <div class="w-full glass-card p-8 mt-8">
-                    <h3 class="text-lg font-bold mb-4">Dépannage Rapide (FAQ)</h3>
-                    <div class="space-y-4">
-                        <div>
-                            <p class="text-sm font-bold text-zinc-300">Q: Mon antivirus bloque l'exécutable.</p>
-                            <p class="text-xs text-zinc-500">R: C'est un faux positif dû à la signature numérique récente. Ajoutez une exception pour KORE.</p>
+                <!-- Guide Utilisateur -->
+                <div class="w-full">
+                    <h3 class="text-2xl font-bold mb-6 border-l-4 border-white pl-4">🎮 Guide Utilisateur</h3>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="glass-card p-6">
+                            <h4 class="font-bold text-white mb-2">1. Installation</h4>
+                            <ol class="text-xs text-zinc-400 list-decimal pl-4 space-y-2 marker:text-white">
+                                <li>Téléchargez l'installateur <code>KORE-Setup-X.X.X.exe</code>.</li>
+                                <li>Lancez l'installation (Windows uniquement).</li>
+                                <li>Au premier démarrage, le launcher demandera une configuration.</li>
+                            </ol>
                         </div>
-                        <div>
-                            <p class="text-sm font-bold text-zinc-300">Q: "Port Binding Error"</p>
-                            <p class="text-xs text-zinc-500">R: Une autre instance de Java tourne peut-être en fond. Tuez les processus Java via le Gestionnaire de tâches.</p>
+
+                        <div class="glass-card p-6">
+                            <h4 class="font-bold text-white mb-2">2. Configuration (config.json)</h4>
+                            <ul class="text-xs text-zinc-400 list-disc pl-4 space-y-2">
+                                <li>Obtenez le fichier <code>.json</code> auprès de l'admin.</li>
+                                <li>Cliquez sur "Importer une configuration".</li>
+                                <li>Fichier chiffré et stocké en sécurité après validation.</li>
+                            </ul>
+                        </div>
+
+                        <div class="glass-card p-6">
+                            <h4 class="font-bold text-white mb-2">3. Jouer (Client)</h4>
+                            <ul class="text-xs text-zinc-400 list-disc pl-4 space-y-2">
+                                <li>Connectez-vous avec votre compte Microsoft.</li>
+                                <li>Sélectionnez votre Modpack.</li>
+                                <li>Cliquez sur <strong>"LANCER LE JEU"</strong> (Auto-update inclus).</li>
+                            </ul>
+                        </div>
+
+                        <div class="glass-card p-6 border border-blue-500/30 bg-blue-500/5">
+                            <h4 class="font-bold text-blue-400 mb-2">4. Héberger la partie (Host)</h4>
+                            <ol class="text-xs text-zinc-300 list-decimal pl-4 space-y-2 marker:text-blue-500">
+                                <li>Allez dans l'onglet <strong>"Serveur"</strong>.</li>
+                                <li>Cliquez sur <strong>"Héberger la Session"</strong>.</li>
+                                <li>Le launcher gère le verrouillage, le téléchargement, le lancement et le tunnel Playit.gg.</li>
+                                <li>À la fin, cliquez sur <strong>"Arrêter & Sync"</strong>.</li>
+                            </ol>
                         </div>
                     </div>
                 </div>
 
-                <div class="mt-12">
+                <!-- Guide Admin -->
+                <div class="w-full mt-8">
+                    <h3 class="text-2xl font-bold mb-6 border-l-4 border-emerald-500 pl-4 text-zinc-300">🛠️ Guide Administrateur</h3>
+
+                    <div class="space-y-6">
+                        <div class="glass-card p-8">
+                            <h4 class="font-bold text-emerald-400 mb-4">Architecture du Serveur Distant (SFTP)</h4>
+                            <pre class="bg-black/50 p-4 rounded-lg text-[10px] font-mono text-zinc-400 overflow-x-auto border border-white/5">
+/home/user/kore_storage/
+├── modpacks/              # Dossier racine des modpacks
+│   ├── PVP/               # Nom du modpack (identique au menu)
+│   │   ├── mods/          # Tous les .jar du modpack
+│   │   ├── server/        # Sauvegardes du serveur
+│   │   ├── version.txt    # Version MC (ex: 1.20.1)
+│   │   ├── f_ver.txt      # Version Forge (ex: 47.1.0)
+│   │   ├── modpack.txt    # Version du modpack (trigger update)
+│   │   └── lock.txt       # (Auto-généré)
+│   └── CREATIF/           # Autre modpack...
+└── admin_pass.txt         # (Optionnel) Mot de passe Admin</pre>
+                        </div>
+
+                        <div class="glass-card p-8">
+                            <h4 class="font-bold text-emerald-400 mb-4">Template config.json</h4>
+                            <pre class="bg-black/50 p-4 rounded-lg text-[10px] font-mono text-zinc-400 overflow-x-auto border border-white/5">
+{
+  "host": "ip.de.votre.vps",
+  "port": 22,
+  "username": "sftp_user",
+  "password": "sftp_password",
+  "remoteRoot": "/home/sftp_user/kore_storage",
+  "javaPath": ""  // Optionnel
+}</pre>
+                        </div>
+
+                        <div class="glass-card p-8">
+                            <h4 class="font-bold text-emerald-400 mb-4">Sécurité & Build</h4>
+                            <ul class="text-xs text-zinc-400 list-disc pl-4 space-y-2">
+                                <li>Ne jamais commiter de <code>config.json</code> ou clés privées.</li>
+                                <li>Build avec <code>npm run build</code> (Nécessite Node v16+).</li>
+                                <li>L'accès Admin est protégé par mot de passe.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-12 w-full text-center border-t border-white/10 pt-8">
                      <button onclick="showMainSection('promo')" class="px-8 py-4 border border-zinc-800 rounded-xl text-xs font-mono uppercase tracking-widest hover:border-white transition-all">RETOUR À LA BASE</button>
                 </div>
             </div>
