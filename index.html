@@ -216,83 +216,241 @@
                 <span class="font-black tracking-tighter text-xl">KORE</span>
             </div>
             <div class="flex gap-10">
-                <button onclick="showSection('home')" class="nav-link active" id="link-home">Console</button>
-                <button onclick="showSection('features')" class="nav-link" id="link-features">Architecture</button>
-                <button onclick="showSection('download')" class="nav-link" id="link-download">Déploiement</button>
+                <button onclick="showSection('home-view')" class="nav-link active" id="link-home-view">ACCUEIL</button>
+                <button onclick="showSection('support-view')" class="nav-link" id="link-support-view">SUPPORT</button>
             </div>
             <div class="text-[10px] font-mono text-zinc-600 tracking-widest">BUILD_2026_PTSI</div>
         </nav>
 
-        <main class="flex-1 container mx-auto px-6 flex flex-col items-center justify-center">
+        <main class="flex-1 container mx-auto px-6 py-12">
             
-            <!-- SECTION ACCUEIL -->
-            <div id="home" class="content-section active text-center max-w-4xl">
-                <div class="logo-wrapper mb-12">
-                    <div class="lightning-container"><div class="photon-pulse" style="animation-duration: 1.5s;"></div></div>
-                    <div class="k-split" style="font-size: 10rem;">K</div>
+            <!-- VUE ACCUEIL (Single Scrolling Page) -->
+            <div id="home-view" class="content-section active flex flex-col items-center gap-32">
+
+                <!-- 1. HERO -->
+                <div class="text-center max-w-4xl pt-12">
+                    <div class="logo-wrapper mb-12">
+                        <div class="lightning-container"><div class="photon-pulse" style="animation-duration: 1.5s;"></div></div>
+                        <div class="k-split" style="font-size: 10rem;">K</div>
+                    </div>
+                    <h1 class="text-5xl md:text-7xl font-black tracking-tighter mb-8 uppercase leading-tight">
+                        VOTRE SERVEUR.<br>VOTRE <span class="text-blue-500 italic">PUISSANCE</span>.<br>NOTRE NUAGE.
+                    </h1>
+                    <p class="text-zinc-400 text-lg font-light mb-12 max-w-2xl mx-auto leading-relaxed">
+                        Jouez en multijoueur sur votre propre machine, sans contraintes, avec la sécurité d'un serveur dédié.
+                    </p>
+                    <div class="flex gap-4 justify-center">
+                        <button onclick="document.getElementById('download-area').scrollIntoView({behavior: 'smooth'})" class="btn-prime w-auto">TÉLÉCHARGER</button>
+                        <button onclick="document.getElementById('features-area').scrollIntoView({behavior: 'smooth'})" class="px-8 py-4 border border-zinc-800 rounded-xl text-xs font-mono uppercase tracking-widest hover:border-white transition-all">POURQUOI KORE ?</button>
+                    </div>
                 </div>
-                <h1 class="text-6xl font-black tracking-tighter mb-6 uppercase leading-tight">
-                    LIGHTNING <span class="text-blue-500 italic">FAST</span><br>RUNTIME ENGINE.
-                </h1>
-                <p class="text-zinc-500 text-lg font-light mb-10 max-w-2xl mx-auto leading-relaxed">
-                    Moteur d'exécution ultra-basse latence conçu pour l'interconnexion massive. Performance brute pour architectures critiques.
-                </p>
-                <div class="flex gap-4 justify-center">
-                    <button onclick="showSection('download')" class="btn-prime w-auto">Télécharger le module</button>
-                    <button onclick="showSection('features')" class="px-8 py-4 border border-zinc-800 rounded-xl text-xs font-mono uppercase tracking-widest hover:border-white transition-all">Specs_Techniques</button>
+
+                <!-- 2. FEATURES -->
+                <div id="features-area" class="w-full max-w-6xl">
+                    <div class="text-center mb-16">
+                        <h2 class="text-3xl font-bold uppercase tracking-widest mb-4">Pourquoi KORE ?</h2>
+                        <div class="h-1 w-20 bg-blue-500 mx-auto"></div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-6 gap-6">
+                        <div class="glass-card p-8 hover:bg-white/5 transition-colors md:col-span-2">
+                            <div class="text-blue-500 font-mono text-[10px] mb-4 tracking-widest">01 // PERFORMANCE</div>
+                            <h3 class="text-lg font-bold mb-2">Host Anywhere</h3>
+                            <p class="text-xs text-zinc-500 leading-relaxed">Votre PC devient le serveur. Utilisez toute la puissance de votre CPU et RAM pour héberger des modpacks lourds sans lag.</p>
+                        </div>
+                        <div class="glass-card p-8 hover:bg-white/5 transition-colors md:col-span-2">
+                            <div class="text-blue-500 font-mono text-[10px] mb-4 tracking-widest">02 // RÉSEAU</div>
+                            <h3 class="text-lg font-bold mb-2">Zéro Config</h3>
+                            <p class="text-xs text-zinc-500 leading-relaxed">Tunneling Playit.gg intégré nativement. Invitez vos amis instantanément sans ouvrir aucun port de votre box.</p>
+                        </div>
+                        <div class="glass-card p-8 hover:bg-white/5 transition-colors md:col-span-2">
+                            <div class="text-blue-500 font-mono text-[10px] mb-4 tracking-widest">03 // SÉCURITÉ</div>
+                            <h3 class="text-lg font-bold mb-2">Sync SFTP</h3>
+                            <p class="text-xs text-zinc-500 leading-relaxed">Sauvegardes cloud automatiques et verrouillage de session pour éviter tout conflit de données.</p>
+                        </div>
+                        <div class="glass-card p-8 hover:bg-white/5 transition-colors md:col-span-3">
+                            <div class="text-blue-500 font-mono text-[10px] mb-4 tracking-widest">04 // FLEXIBILITÉ</div>
+                            <h3 class="text-lg font-bold mb-2">Multi-Modpacks</h3>
+                            <p class="text-xs text-zinc-500 leading-relaxed">Basculez entre Survie, Tech ou Magie en un clic. Chaque instance est totalement isolée.</p>
+                        </div>
+                        <div class="glass-card p-8 hover:bg-white/5 transition-colors md:col-span-3">
+                            <div class="text-blue-500 font-mono text-[10px] mb-4 tracking-widest">05 // CONTRÔLE</div>
+                            <h3 class="text-lg font-bold mb-2">Admin Simplifiée</h3>
+                            <p class="text-xs text-zinc-500 leading-relaxed">Panel admin intégré pour gérer versions et mods. Console distante pour les commandes OP.</p>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- 2.5 TARGET AUDIENCE -->
+                <div class="w-full max-w-5xl">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="p-8 border-l-2 border-blue-500 bg-white/5 rounded-r-xl">
+                            <h3 class="text-xl font-bold mb-4 text-white">Pour les Joueurs</h3>
+                            <p class="text-sm text-zinc-400 italic">"Je veux juste jouer avec mes potes sur un gros modpack sans payer 20€/mois pour un serveur qui lag."</p>
+                        </div>
+                        <div class="p-8 border-l-2 border-zinc-500 bg-white/5 rounded-r-xl">
+                            <h3 class="text-xl font-bold mb-4 text-white">Pour les Admins</h3>
+                            <p class="text-sm text-zinc-400 italic">"J'en ai marre d'expliquer comment installer Forge et Java. Avec KORE, je distribue un fichier config et c'est parti."</p>
+                        </div>
+                    </div>
+
+                    <!-- TECH SPECS STRIP -->
+                    <div class="mt-12 pt-8 border-t border-white/5 flex flex-wrap justify-center gap-8 text-[10px] font-mono text-zinc-600 uppercase tracking-widest">
+                        <span>Electron / Node.js</span>
+                        <span>Windows 10/11 x64</span>
+                        <span>AES-256 Encryption</span>
+                        <span>SSH2 / SFTP Protocol</span>
+                    </div>
+                </div>
+
+                <!-- 3. DOWNLOAD (Moved here) -->
+                <div id="download-area" class="w-full max-w-5xl pb-20">
+                    <div class="text-center mb-16">
+                        <h2 class="text-3xl font-bold uppercase tracking-widest mb-4">Déploiement</h2>
+                        <div class="h-1 w-20 bg-blue-500 mx-auto"></div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="glass-card p-12 flex flex-col">
+                            <div class="flex items-center gap-6 mb-8">
+                                <div class="p-4 bg-white/5 rounded-2xl text-blue-500">
+                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4h16v16H4zM4 12h16M12 4v16"></path></svg>
+                                </div>
+                                <div>
+                                    <h2 class="font-bold text-xl">KORE Launcher</h2>
+                                    <span class="text-[10px] font-mono text-zinc-600">WIN_X64_STABLE</span>
+                                </div>
+                            </div>
+                            <button class="btn-prime" onclick="simulateDownload(this)">Déployer le Binaire</button>
+                        </div>
+                        <div class="glass-card p-12 flex flex-col">
+                            <div class="flex items-center gap-6 mb-8">
+                                <div class="p-4 bg-white/5 rounded-2xl text-zinc-400">
+                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                                </div>
+                                <div>
+                                    <h2 class="font-bold text-xl text-zinc-300">Java 21 Library</h2>
+                                    <span class="text-[10px] font-mono text-zinc-600">DÉPENDANCE_LTS</span>
+                                </div>
+                            </div>
+                            <button class="px-8 py-4 border border-zinc-800 rounded-xl text-[10px] font-mono uppercase tracking-widest hover:border-white transition-all" onclick="window.open('https://www.oracle.com/java/technologies/downloads/#java21', '_blank')">Lien Oracle JDK 21</button>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
-            <!-- SECTION ARCHITECTURE -->
-            <div id="features" class="content-section w-full max-w-5xl">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="glass-card p-10">
-                        <div class="text-blue-500 font-mono text-[10px] mb-6 tracking-widest">01 // LATENCE</div>
-                        <h3 class="text-xl font-bold mb-4">Usinage du Signal</h3>
-                        <p class="text-xs text-zinc-500 leading-relaxed font-light">Le Kernel KORE garantit une exécution sub-milliseconde. Pas de gigue dans le bus interne.</p>
+            <!-- VUE SUPPORT (Initially Hidden) -->
+            <div id="support-view" class="content-section flex flex-col items-center gap-16 max-w-6xl mx-auto pb-20">
+
+                <div class="text-center pt-12">
+                    <h1 class="text-4xl font-black tracking-tighter mb-4 uppercase">Support & Documentation</h1>
+                    <p class="text-zinc-500 font-light">Manuel opérationnel et guide de déploiement.</p>
+                </div>
+
+                <!-- USER GUIDE GRID -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
+
+                    <!-- CARD 1: INSTALLATION -->
+                    <div class="glass-card p-10 flex flex-col gap-4">
+                        <div class="flex items-center gap-3 text-blue-500 mb-2">
+                            <span class="font-mono text-xl font-bold">01.</span>
+                            <h2 class="text-xl font-bold uppercase tracking-wide">Installation</h2>
+                        </div>
+                        <ul class="list-disc list-inside text-sm text-zinc-400 space-y-2 leading-relaxed marker:text-blue-500">
+                            <li>Téléchargez l'installateur <code class="bg-white/10 px-1 py-0.5 rounded text-white font-mono text-xs">KORE-Setup.exe</code> via l'onglet Accueil.</li>
+                            <li>Lancez l'exécutable (Windows uniquement).</li>
+                            <li>Au premier démarrage, le launcher demandera un fichier de configuration.</li>
+                        </ul>
                     </div>
-                    <div class="glass-card p-10">
-                        <div class="text-blue-500 font-mono text-[10px] mb-6 tracking-widest">02 // TOPOLOGIE</div>
-                        <h3 class="text-xl font-bold mb-4">Réseau Cristallin</h3>
-                        <p class="text-xs text-zinc-500 leading-relaxed font-light">Chaque utilisateur devient une brique de calcul optimisée dans le cluster mondial.</p>
+
+                    <!-- CARD 2: CONFIGURATION -->
+                    <div class="glass-card p-10 flex flex-col gap-4">
+                        <div class="flex items-center gap-3 text-blue-500 mb-2">
+                            <span class="font-mono text-xl font-bold">02.</span>
+                            <h2 class="text-xl font-bold uppercase tracking-wide">Configuration</h2>
+                        </div>
+                        <p class="text-sm text-zinc-400 leading-relaxed">
+                            Le launcher nécessite une "clé" d'accès. L'administrateur du serveur vous fournira un fichier <code class="bg-white/10 px-1 py-0.5 rounded text-white font-mono text-xs">.json</code>.
+                        </p>
+                        <div class="bg-black/30 p-4 rounded-lg border border-white/5 mt-2">
+                            <p class="text-xs text-zinc-500 italic">Cliquez sur "Importer une configuration" et sélectionnez ce fichier. Il sera chiffré localement.</p>
+                        </div>
                     </div>
-                    <div class="glass-card p-10">
-                        <div class="text-blue-500 font-mono text-[10px] mb-6 tracking-widest">03 // OPTIMISATION</div>
-                        <h3 class="text-xl font-bold mb-4">Cœur Java 21</h3>
-                        <p class="text-xs text-zinc-500 leading-relaxed font-light">Compilation JIT avancée pour une gestion mémoire agressive et une vitesse de calcul brute.</p>
+
+                    <!-- CARD 3: JOUER (CLIENT) -->
+                    <div class="glass-card p-10 flex flex-col gap-4">
+                        <div class="flex items-center gap-3 text-blue-500 mb-2">
+                            <span class="font-mono text-xl font-bold">03.</span>
+                            <h2 class="text-xl font-bold uppercase tracking-wide">Jouer (Client)</h2>
+                        </div>
+                        <ol class="list-decimal list-inside text-sm text-zinc-400 space-y-2 leading-relaxed marker:text-zinc-600">
+                            <li>Connectez-vous avec votre compte Microsoft.</li>
+                            <li>Sélectionnez votre <strong>Modpack</strong> en haut à gauche.</li>
+                            <li>Cliquez sur <span class="text-white font-bold">"LANCER LE JEU"</span>.</li>
+                        </ol>
+                        <p class="text-xs text-zinc-500 mt-2">Le launcher gère automatiquement le téléchargement de Java, Forge et des mods.</p>
+                    </div>
+
+                    <!-- CARD 4: HÉBERGER (HOST) -->
+                    <div class="glass-card p-10 flex flex-col gap-4 border-blue-500/30 shadow-[0_0_30px_rgba(59,130,246,0.1)]">
+                        <div class="flex items-center gap-3 text-blue-500 mb-2">
+                            <span class="font-mono text-xl font-bold">04.</span>
+                            <h2 class="text-xl font-bold uppercase tracking-wide">Héberger (Host)</h2>
+                        </div>
+                        <p class="text-xs text-zinc-300 mb-2">Requis : Bon PC (16Go+ RAM) et Fibre.</p>
+                        <ul class="text-sm text-zinc-400 space-y-3 leading-relaxed">
+                            <li class="flex gap-3"><span class="text-blue-500">→</span> Allez dans l'onglet <strong>Serveur</strong>.</li>
+                            <li class="flex gap-3"><span class="text-blue-500">→</span> Cliquez sur <strong>Héberger la Session</strong>.</li>
+                            <li class="flex gap-3"><span class="text-blue-500">→</span> Attendez le tunnel <strong>Playit.gg</strong> et partagez l'IP.</li>
+                            <li class="flex gap-3"><span class="text-red-400">■</span> À la fin, cliquez sur <strong>Arrêter & Sync</strong> pour sauvegarder.</li>
+                        </ul>
                     </div>
                 </div>
+
+                <!-- ADMIN SECTION -->
+                <div class="w-full mt-12">
+                    <div class="text-center mb-12">
+                        <h2 class="text-2xl font-bold uppercase tracking-widest mb-4 text-zinc-300">Administration Avancée</h2>
+                        <div class="h-px w-full bg-gradient-to-r from-transparent via-zinc-700 to-transparent"></div>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+                        <!-- FILE STRUCTURE -->
+                        <div class="glass-card p-8">
+                            <h3 class="text-sm font-mono text-blue-400 mb-6 uppercase tracking-wider">Architecture SFTP</h3>
+                            <pre class="font-mono text-[10px] sm:text-xs text-zinc-400 leading-relaxed overflow-x-auto p-4 bg-black/40 rounded-lg border border-white/5">
+/home/user/kore_storage/
+├── modpacks/
+│   ├── PVP/
+│   │   ├── mods/          <span class="text-zinc-600"># .jar files</span>
+│   │   ├── server/        <span class="text-zinc-600"># World data</span>
+│   │   ├── version.txt    <span class="text-zinc-600"># MC Version</span>
+│   │   ├── f_ver.txt      <span class="text-zinc-600"># Forge Version</span>
+│   │   └── lock.txt       <span class="text-zinc-600"># Session lock</span>
+│   └── CREATIF/
+└── admin_pass.txt</pre>
+                        </div>
+
+                        <!-- CONFIG TEMPLATE -->
+                        <div class="glass-card p-8">
+                            <h3 class="text-sm font-mono text-blue-400 mb-6 uppercase tracking-wider">Config.json Template</h3>
+                            <pre class="font-mono text-[10px] sm:text-xs text-zinc-400 leading-relaxed overflow-x-auto p-4 bg-black/40 rounded-lg border border-white/5">
+{
+  "host": "ip.de.votre.vps",
+  "port": 22,
+  "username": "sftp_user",
+  "password": "sftp_password",
+  "remoteRoot": "/home/user/kore_storage",
+  "javaPath": "" <span class="text-zinc-600">// Optionnel</span>
+}</pre>
+                            <p class="mt-4 text-[10px] text-zinc-500 uppercase tracking-widest text-center">⚠ Ne jamais partager publiquement</p>
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
 
-            <!-- SECTION DEPLOIEMENT -->
-            <div id="download" class="content-section w-full max-w-5xl">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="glass-card p-12 flex flex-col">
-                        <div class="flex items-center gap-6 mb-8">
-                            <div class="p-4 bg-white/5 rounded-2xl text-blue-500">
-                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4h16v16H4zM4 12h16M12 4v16"></path></svg>
-                            </div>
-                            <div>
-                                <h2 class="font-bold text-xl">KORE Launcher</h2>
-                                <span class="text-[10px] font-mono text-zinc-600">WIN_X64_STABLE</span>
-                            </div>
-                        </div>
-                        <button class="btn-prime" onclick="simulateDownload(this)">Déployer le Binaire</button>
-                    </div>
-                    <div class="glass-card p-12 flex flex-col">
-                        <div class="flex items-center gap-6 mb-8">
-                            <div class="p-4 bg-white/5 rounded-2xl text-zinc-400">
-                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
-                            </div>
-                            <div>
-                                <h2 class="font-bold text-xl text-zinc-300">Java 21 Library</h2>
-                                <span class="text-[10px] font-mono text-zinc-600">DÉPENDANCE_LTS</span>
-                            </div>
-                        </div>
-                        <button class="px-8 py-4 border border-zinc-800 rounded-xl text-[10px] font-mono uppercase tracking-widest hover:border-white transition-all" onclick="window.open('https://www.oracle.com/java/technologies/downloads/#java21', '_blank')">Lien Oracle JDK 21</button>
-                    </div>
-                </div>
-            </div>
         </main>
 
         <footer class="w-full py-8 border-t border-white/5 bg-black/40 backdrop-blur-xl">
@@ -390,7 +548,11 @@
             document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
             document.getElementById(sectionId).classList.add('active');
             document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-            document.getElementById('link-' + sectionId).classList.add('active');
+            const link = document.getElementById('link-' + sectionId);
+            if(link) link.classList.add('active');
+
+            // Scroll to top when switching views
+            document.getElementById('main-site').scrollTo(0, 0);
         }
 
         function simulateDownload(btn) {
@@ -401,9 +563,14 @@
                 btn.innerText = "TRANSFERT_TERMINÉ";
                 btn.style.background = "#fff"; btn.style.color = "#000";
                 setTimeout(() => {
+                    // Redirect to Support after download simulation
+                    showSection('support-view');
+
+                    // Reset button state
                     btn.innerText = originalText;
                     btn.disabled = false;
-                }, 3000);
+                    btn.style.background = ""; btn.style.color = "";
+                }, 1000);
             }, 2000);
         }
     </script>
